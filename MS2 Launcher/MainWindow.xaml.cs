@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -37,8 +38,18 @@ namespace MS2_Launcher
 
         private void MaxmizeButton_Click(object sender, RoutedEventArgs e)
         {
-
+            //using TcpClient tcpClient = new TcpClient();
+            //try
+            //{
+            //    tcpClient.BeginConnect()
+            //}
         }
+
+        //private bool IsPortOpen(string host, int port, TimeSpan timeout)
+        //{
+        //    using TcpClient tcpClient = new TcpClient();
+        //    tcpClient.BeginConnect(host, port);
+        //}
 
         private void Grid_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {

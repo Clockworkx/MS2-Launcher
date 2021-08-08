@@ -9,8 +9,11 @@
         WindowStyle="None"
         AllowsTransparency="True"
         ResizeMode="CanResizeWithGrip"
-    Background="Transparent"
-        Title="MainWindow" Height="720" Width="1280">
+        Background="Transparent"
+        Title="MainWindow" Height="720" Width="1280"
+        FontSize="22"
+        Foreground="#aa090a">
+        
     <!--<WindowChrome.WindowChrome>
         <WindowChrome CaptionHeight="0" ResizeBorderThickness="5" />
     </WindowChrome.WindowChrome>-->
@@ -34,7 +37,7 @@
         </Style>
     </Window.Resources>
 
-    <Grid ShowGridLines="True" MouseDown="Grid_MouseLeftButtonDown">
+    <Grid ShowGridLines="True">
         <Grid.RowDefinitions>
             <RowDefinition Height="0.026*"/>
             <RowDefinition Height="*"/>
@@ -56,34 +59,28 @@
             </Button>
         </DockPanel>
 
-        <Border Grid.Row="0" Grid.RowSpan="2" Grid.Column="0" Grid.ColumnSpan="6" BorderThickness="18" CornerRadius="2" >
+        <Border Grid.Row="0" Grid.RowSpan="2" Grid.Column="0" Grid.ColumnSpan="6" BorderThickness="20" CornerRadius="2" MouseDown="Grid_MouseLeftButtonDown">
             <Border.BorderBrush>
                 <ImageBrush ImageSource="/DD Grunge Frame Background 44090_DD-Grunge-Frame-Background-44090-Preview.jpg" Stretch="Fill"/>
             </Border.BorderBrush>
-            <Grid ShowGridLines="False">
-                <Grid.Background>
-                    <ImageBrush ImageSource="Resources/background.jpg" Opacity="0.99" Stretch="Fill"/>
-                </Grid.Background>
+            <Grid ShowGridLines="False" Background="AliceBlue">
+
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="5"/>
                     <RowDefinition Height="*"/>
                     <!--<RowDefinition Height="0.2*"/>-->
-                    <RowDefinition Height="5"/>
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="5"/>
                     <ColumnDefinition Width="425*"/>
                     <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition Width="702*" />
                     <ColumnDefinition Width="88*"/>
-                    <ColumnDefinition Width="5"/>
                 </Grid.ColumnDefinitions>
 
-                <GridSplitter Grid.Column="2" Grid.Row="1" Margin="0,25,0,25" Background="Black" Width="5"
+                <GridSplitter Grid.Column="1" Grid.Row="1" Margin="0,25,0,25" Background="Black" Width="5"
                       HorizontalAlignment="Center"
                       ShowsPreview="True"/>
 
-                <Border Grid.Row="1" Grid.Column="1" Margin="20,20,0,20" BorderThickness="15,25,15,25" CornerRadius="5,5,0,0" >
+                <Border Grid.Row="1" Grid.Column="0" Margin="40" BorderThickness="15,25,15,25" CornerRadius="5,5,0,0" >
                     <Border.Background>
                         <ImageBrush ImageSource="/DD Grunge Frame Background 44090_DD-Grunge-Frame-Background-44090-Preview.jpg"/>
                     </Border.Background>
@@ -94,7 +91,10 @@
                 </Border>
 
 
-                <Grid Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="3" Margin="5,0,0,0">
+                <Grid Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" Margin="5,0,0,0">
+                    <Grid.Background>
+                        <ImageBrush ImageSource="Resources/background.jpg" Opacity="0.99" Stretch="Fill"/>
+                    </Grid.Background>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="0.30*"/>
                         <RowDefinition Height="0.2*"/>
@@ -110,15 +110,24 @@
 
                     <TextBlock Grid.Row="1" Grid.Column="1" />
 
-                    <Button Grid.Row="2" Grid.Column="0" Margin="20,20,20,20"  BorderBrush="{x:Null}">
+                    <!--<Button Grid.Row="2" Grid.Column="0" Margin="40"  BorderBrush="{x:Null}">
                         <Button.Background>
                             <ImageBrush ImageSource="/DD Grunge Frame Background 44090_DD-Grunge-Frame-Background-44090-Preview.jpg">
                             </ImageBrush>
                         </Button.Background>
                         <Image Source="Resources/online.jpg" Stretch="UniformToFill" Margin="11,25,10,10"/>
-                    </Button>
+                    </Button>-->
+                    <Border Grid.Row="2" Grid.Column="0" Margin="40"   BorderThickness="10,30,10,10" CornerRadius="5,5,5,5"  >
+                        <Border.BorderBrush>
+                            <ImageBrush ImageSource="/DD Grunge Frame Background 44090_DD-Grunge-Frame-Background-44090-Preview.jpg" Stretch="Fill"/>
+                        </Border.BorderBrush>
+                        <Button BorderThickness="0"
+                         BorderBrush="#FF301C1C" Foreground="#FFA21F1F"   >
+                            <Image Source="Resources/local.jpg" Stretch="UniformToFill"/>
+                        </Button>
+                    </Border>
 
-                    <Border Grid.Row="2" Grid.Column="1" Margin="20,20,20,20" BorderThickness="10,30,10,10" CornerRadius="5,5,5,5"  >
+                    <Border Grid.Row="2" Grid.Column="1" Margin="40" BorderThickness="10,30,10,10" CornerRadius="5,5,5,5"  >
                         <Border.BorderBrush>
                             <ImageBrush ImageSource="/DD Grunge Frame Background 44090_DD-Grunge-Frame-Background-44090-Preview.jpg" Stretch="Fill"/>
                         </Border.BorderBrush>
@@ -138,15 +147,12 @@
                         </Button>
                     </Border>
 
-                    <Border Grid.Row="1" Grid.Column="0" HorizontalAlignment="Center" Margin="0,60,0,0"  BorderThickness="10,10,10,10" CornerRadius="5,5,5,5" Grid.ColumnSpan="2" >
-                        <Border.BorderBrush>
-                            <ImageBrush ImageSource="/DD Grunge Frame Background 44090_DD-Grunge-Frame-Background-44090-Preview.jpg" Stretch="UniformToFill"/>
-                        </Border.BorderBrush>
+                    <Border Grid.Row="1" Grid.Column="0" HorizontalAlignment="Center" Margin="0,60,0,0" CornerRadius="5,5,5,5" Grid.ColumnSpan="2" >
+                        <Border.Background>
+                            <ImageBrush ImageSource="/DD Grunge Frame Background 44090_DD-Grunge-Frame-Background-44090-Preview.jpg" Stretch="Fill"/>
+                        </Border.Background>
                         <StackPanel Orientation="Horizontal" Margin="0,0,0,0" >
-                            <StackPanel.Background>
-                                <ImageBrush ImageSource="/DD Grunge Frame Background 44090_DD-Grunge-Frame-Background-44090-Preview.jpg"/>
-                            </StackPanel.Background>
-                            <Image Source="Resources\banner.png" VerticalAlignment="Center"/>
+                            <Image Source="Resources\banner.png" VerticalAlignment="Center" Margin="15"/>
                             <TextBlock Margin="0,0,10,0" Text="Select your Server" FontSize="22" HorizontalAlignment="Stretch" VerticalAlignment="Center" />
                         </StackPanel>
                     </Border>
