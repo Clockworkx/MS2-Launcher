@@ -1,0 +1,27 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="MS2_Launcher.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="OnlineIp" Type="System.String" Scope="User">
+      <Value Profile="(Default)">185.163.119.206</Value>
+    </Setting>
+    <Setting Name="OnlinePort" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">21001</Value>
+    </Setting>
+    <Setting Name="LocalIp" Type="System.String" Scope="User">
+      <Value Profile="(Default)">127.0.0.1</Value>
+    </Setting>
+    <Setting Name="LocalPort" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">22002</Value>
+    </Setting>
+    <Setting Name="GridsplitterPosition" Type="System.String" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="SelectedServer" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="Setting" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+  </Settings>
+</SettingsFile>
