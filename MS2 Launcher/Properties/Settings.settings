@@ -12,15 +12,12 @@
       <Value Profile="(Default)">127.0.0.1</Value>
     </Setting>
     <Setting Name="LocalPort" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">22002</Value>
+      <Value Profile="(Default)">21001</Value>
     </Setting>
     <Setting Name="GridsplitterPosition" Type="System.String" Scope="User">
       <Value Profile="(Default)">0</Value>
     </Setting>
     <Setting Name="SelectedServer" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
-    </Setting>
-    <Setting Name="Setting" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
   </Settings>

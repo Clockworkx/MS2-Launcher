@@ -5,23 +5,27 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <RootNamespace>MS2_Launcher</RootNamespace>
     <UseWPF>true</UseWPF>
-    <ApplicationIcon>pngaaa_com_2976615_aHR_icon.ico</ApplicationIcon>
+    <ApplicationIcon>icon.ico</ApplicationIcon>
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="DD Grunge Frame Background 44090_DD-Grunge-Frame-Background-44090-Preview.jpg" />
-    <None Remove="Golden Noble Frame, Frame Clipart, Golden, Honorable PNG Transparent Clipart Image and PSD File for Free Download.jpg" />
-    <None Remove="locall.jpg" />
-    <None Remove="Resources\5072.jpg" />
+    <Compile Remove="UserControl1.xaml.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="Resources\altFrame" />
     <None Remove="Resources\background.jpg" />
     <None Remove="Resources\banner.png" />
     <None Remove="Resources\local.jpg" />
     <None Remove="Resources\logo2.png" />
     <None Remove="Resources\online.jpg" />
+    <None Remove="Resources\segoe-mdl2-assets.ttf" />
+    <None Remove="Resources\windowButtons.png" />
+    <None Remove="Resources\windowFrame.png" />
   </ItemGroup>
 
   <ItemGroup>
-    <Page Remove="DDGrungeFrameBackground44090_DDGrungeFrameBackground44090.xaml" />
+    <Page Remove="UserControl1.xaml" />
   </ItemGroup>
 
   <ItemGroup>
@@ -29,18 +33,15 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="DD Grunge Frame Background 44090_DD-Grunge-Frame-Background-44090-Preview.jpg" />
-    <Resource Include="DDGrungeFrameBackground44090_DDGrungeFrameBackground44090.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Resource>
-    <Resource Include="Golden Noble Frame, Frame Clipart, Golden, Honorable PNG Transparent Clipart Image and PSD File for Free Download.jpg" />
-    <Resource Include="locall.jpg" />
-    <Resource Include="Resources\5072.jpg" />
+    <Resource Include="Resources\altFrame" />
     <Resource Include="Resources\background.jpg" />
     <Resource Include="Resources\banner.png" />
     <Resource Include="Resources\local.jpg" />
     <Resource Include="Resources\logo2.png" />
     <Resource Include="Resources\online.jpg" />
+    <Resource Include="Resources\segoe-mdl2-assets.ttf" />
+    <Resource Include="Resources\windowButtons.png" />
+    <Resource Include="Resources\windowFrame.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -53,7 +54,7 @@
 
   <ItemGroup>
     <None Update="Properties\Settings.settings">
-      <Generator>SettingsSingleFileGenerator</Generator>
+      <Generator>PublicSettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
   </ItemGroup>

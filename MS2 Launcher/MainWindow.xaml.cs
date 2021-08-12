@@ -24,15 +24,19 @@ namespace MS2_Launcher
     /// </summary>
     public partial class MainWindow : Window
     {
-        DispatcherTimer timer = new DispatcherTimer();
+        private DispatcherTimer timer = new DispatcherTimer();
+        private Properties.Settings settings = Properties.Settings.Default;
         public MainWindow()
         {
             InitializeComponent();
+            DataContext = this;
 
             timer.Interval = TimeSpan.FromSeconds(25);
             timer.Tick += Timer_Tick;
             CheckOnlineStatus();
-            timer.Start(); 
+            timer.Start();
+            ApplyDefaults();
+
         }
 
         private void Timer_Tick(object sender, EventArgs e)
@@ -66,6 +70,10 @@ namespace MS2_Launcher
 
         private void MaxmizeButton_Click(object sender, RoutedEventArgs e)
         {
+            SettingsWindow settingsWindow = new SettingsWindow();
+            settingsWindow.Owner = Application.Current.MainWindow;
+            settingsWindow.WindowStartupLocation = WindowStartupLocation.CenterOwner;
+            settingsWindow.Show();
         }
 
         private async Task<bool> IsPortOpen(string host, int port)
@@ -90,14 +98,75 @@ namespace MS2_Launcher
 
         private void StartButton_Click(object sender, RoutedEventArgs e)
         {
-           if (Properties.Settings.Default.SelectedServer.Length == 0)
+            
+           if (settings.SelectedServer.Length == 0)
             {
                 MessageBox.Show("Select a server to start");
                 return;
             }
 
-           System.Diagnostics.Process.Start("C:/Development/MS2/Maplestory 2 Client/appdata/MapleStory2.exe", "127.0.0.1 30000 -ip -port --nxapp=nxl --lc=EN");
+            string serverIp;
+            int serverPort;
+            string commonParams = "-ip -port --nxapp=nxl --lc=EN";
+
+            if (settings.SelectedServer == "Online")
+            {
+                serverIp = settings.OnlineIp;
+                serverPort = settings.OnlinePort;
+            }
+            else
+            {
+                serverIp = settings.LocalIp;
+                serverPort = settings.LocalPort;
+            }
+
+            string startParams = string.Join(" ", serverIp, serverPort, commonParams);
+            try
+            {
+                Process process = System.Diagnostics.Process.Start("C:/Development/MS2/Maplestory 2 Client/appdata/MapleStory2.exe", startParams);
+                if (process == null)
+                {
+                    MessageBox.Show("Could not start Maple Story 2. \nIs the launcher in the correct folder?");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Could not start Maple Story 2. \nIs the launcher in the correct folder?");
+                return;
+            }
             Close();
+        }
+
+        private void LocalButton_Click(object sender, RoutedEventArgs e)
+        {
+            settings.SelectedServer = "Local";
+            settings.Save();
+            VisualiseServerSelection("Local");
+            //string buttonName = (sender as Button).Name;
+        }
+
+        private void OnlineButton_Click(object sender, RoutedEventArgs e)
+        {
+            settings.SelectedServer = "Online";
+            settings.Save();
+            VisualiseServerSelection("Online");
+        }
+
+        private void VisualiseServerSelection(string server)
+        {
+            if (server == "Online")
+            {
+                OnlineButtonImage.Opacity = 1;
+                LocalButtonImage.Opacity = 0.4;
+                return;
+            }
+            LocalButtonImage.Opacity = 1;
+            OnlineButtonImage.Opacity = 0.4;
+        }
+
+        private void ApplyDefaults()
+        {
+            VisualiseServerSelection(settings.SelectedServer);
         }
     }
 }
