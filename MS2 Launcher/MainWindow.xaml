@@ -16,7 +16,8 @@
         FontSize="30"
         FontFamily="French Script MT"
         Foreground="Black"
-        WindowStartupLocation="CenterScreen">
+        WindowStartupLocation="CenterScreen"
+        >
 
     <!--#aa090a-->
 
@@ -78,7 +79,7 @@
             </Button>
         </Grid>
 
-        <Border Grid.Row="0" Grid.RowSpan="2" Grid.Column="0" Grid.ColumnSpan="2" BorderThickness="32" CornerRadius="2" MouseDown="Grid_MouseLeftButtonDown">
+        <Border Grid.Row="0" Grid.RowSpan="2" Grid.Column="0" Grid.ColumnSpan="2" BorderThickness="32" CornerRadius="2" MouseLeftButtonDown="Grid_MouseLeftButtonDown">
             <Border.BorderBrush>
                 <ImageBrush ImageSource="Resources/windowFrame.png" Stretch="Fill"/>
             </Border.BorderBrush>
@@ -210,6 +211,16 @@
                             <TextBlock Margin="0" Text="Select your Server" FontSize="38" FontWeight="Bold" HorizontalAlignment="Stretch" VerticalAlignment="Center" />
                         </StackPanel>
                     </Border>
+                    
+                    <!--Edit Button-->
+                    <Button HorizontalAlignment="Right" MinWidth="35" Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2" Margin="0,25,0,0" Style="{DynamicResource RoundButton}" BorderThickness="0"  Click="EditButton_Click">
+                        <Button.Background>
+                            <ImageBrush ImageSource="Resources/windowFrame.png" Stretch="Fill"/>
+                        </Button.Background>
+                        <Button.Content>
+                            <Image Source="Resources/edit.png" Stretch="Uniform" />
+                        </Button.Content>
+                    </Button>
 
                     <!--<TextBlock Grid.Row="0" Background="Black" Text="{Binding Source={x:Static properties:Settings.Default}, Path=OnlineIp }" Grid.ColumnSpan="2" Margin="383,0,0,0"/>-->
                 </Grid>

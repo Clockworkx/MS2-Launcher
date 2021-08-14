@@ -1,6 +1,8 @@
-﻿using System;
+﻿using Microsoft.Win32;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Sockets;
@@ -26,6 +28,7 @@ namespace MS2_Launcher
     {
         private DispatcherTimer timer = new DispatcherTimer();
         private Properties.Settings settings = Properties.Settings.Default;
+
         public MainWindow()
         {
             InitializeComponent();
@@ -36,7 +39,6 @@ namespace MS2_Launcher
             CheckOnlineStatus();
             timer.Start();
             ApplyDefaults();
-
         }
 
         private void Timer_Tick(object sender, EventArgs e)
@@ -70,10 +72,16 @@ namespace MS2_Launcher
 
         private void MaxmizeButton_Click(object sender, RoutedEventArgs e)
         {
-            SettingsWindow settingsWindow = new SettingsWindow();
-            settingsWindow.Owner = Application.Current.MainWindow;
-            settingsWindow.WindowStartupLocation = WindowStartupLocation.CenterOwner;
-            settingsWindow.Show();
+            if (WindowState == WindowState.Maximized)
+            {
+                WindowState = WindowState.Normal;
+                return;
+            }
+            WindowState = WindowState.Maximized;
+            //SettingsWindow settingsWindow = new SettingsWindow();
+            //settingsWindow.Owner = Application.Current.MainWindow;
+            //settingsWindow.WindowStartupLocation = WindowStartupLocation.CenterOwner;
+            //settingsWindow.Show();
         }
 
         private async Task<bool> IsPortOpen(string host, int port)
@@ -96,7 +104,7 @@ namespace MS2_Launcher
             DragMove();
         }
 
-        private void StartButton_Click(object sender, RoutedEventArgs e)
+        private async void StartButton_Click(object sender, RoutedEventArgs e)
         {
             
            if (settings.SelectedServer.Length == 0)
@@ -104,37 +112,82 @@ namespace MS2_Launcher
                 MessageBox.Show("Select a server to start");
                 return;
             }
+           if (settings.ClientLocation.Length == 0)
+            {
+                string messageBoxText = "Client location not set.\nDo you want to set it now?";
+                if (MessageBox.Show(messageBoxText, "Starting Error", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+                {
+                    SetClientLocation();
+                }
+                return;
+            }
 
-            string serverIp;
+            //string serverIp;
             int serverPort;
             string commonParams = "-ip -port --nxapp=nxl --lc=EN";
-
+            List<string> orionConfigurationContent = new List<string> { "[Settings]"};
+            
             if (settings.SelectedServer == "Online")
             {
-                serverIp = settings.OnlineIp;
+                //serverIp = settings.OnlineIp;
                 serverPort = settings.OnlinePort;
+                orionConfigurationContent.Add($"ClientIP={settings.OnlineIp}");
             }
             else
             {
-                serverIp = settings.LocalIp;
+                //serverIp = settings.LocalIp;
                 serverPort = settings.LocalPort;
+                orionConfigurationContent.Add($"ClientIP={settings.LocalIp}");
             }
 
-            string startParams = string.Join(" ", serverIp, serverPort, commonParams);
+            if (await WriteOrionConfiguration(orionConfigurationContent) == false)
+            {
+                return;
+            }
+            string startParams = string.Join(" ", serverPort, commonParams);
             try
             {
-                Process process = System.Diagnostics.Process.Start("C:/Development/MS2/Maplestory 2 Client/appdata/MapleStory2.exe", startParams);
+                Process process = System.Diagnostics.Process.Start(settings.ClientLocation + "\\MapleStory2.exe", startParams);
                 if (process == null)
                 {
-                    MessageBox.Show("Could not start Maple Story 2. \nIs the launcher in the correct folder?");
+                    HandleStartError();
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Could not start Maple Story 2. \nIs the launcher in the correct folder?");
+
+                HandleStartError();
                 return;
             }
             Close();
+        }
+
+        private async Task<bool> WriteOrionConfiguration(List<string> content)
+        {
+            //StreamReader reader = new StreamReader(settings.ClientLocation + "\\Orion2.ini");
+            Trace.WriteLine("File created");
+            Trace.WriteLine($"content {content}");
+            try
+            {
+                await File.WriteAllLinesAsync($"{settings.ClientLocation}\\Orion.ini", content);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Could not write to Orion.ini", "Startup Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return false;
+            }
+
+        }
+
+        private void HandleStartError()
+        {
+            string messageBoxText = "Could not start Maple Story2\nDo you want to change MapleStory2.exe`s location?";
+            if (MessageBox.Show(messageBoxText, "Starting Error", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+            {
+                SetClientLocation();
+            }
+            return;
         }
 
         private void LocalButton_Click(object sender, RoutedEventArgs e)
@@ -167,6 +220,30 @@ namespace MS2_Launcher
         private void ApplyDefaults()
         {
             VisualiseServerSelection(settings.SelectedServer);
+        }
+
+        private void EditButton_Click(object sender, RoutedEventArgs e)
+        {
+            SettingsWindow SettingsWindow = new SettingsWindow();
+            SettingsWindow.Owner = this; //Application.Current.MainWindow;
+            SettingsWindow.WindowStartupLocation = WindowStartupLocation.CenterOwner;
+            SettingsWindow.Show();
+        }
+
+        private void SetClientLocation()
+        {
+            OpenFileDialog fileDialog = new OpenFileDialog();
+            fileDialog.FileName = "MapleStory2";
+            fileDialog.DefaultExt = ".exe";
+            fileDialog.Filter = "MapleStory2 Executable|MapleStory2.exe";
+            if (fileDialog.ShowDialog() == true)
+            {
+                string clientPath = fileDialog.FileName.Remove(fileDialog.FileName.IndexOf("\\MapleStory2.exe"));
+                settings.ClientLocation = clientPath; //.Replace("\\", "/");
+                settings.Save();
+                return;
+            }
+            MessageBox.Show("Could not set client location.");
         }
     }
 }

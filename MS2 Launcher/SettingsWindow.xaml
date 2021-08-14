@@ -5,8 +5,202 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MS2_Launcher"
         mc:Ignorable="d"
-        Title="SettingsWindow" Height="450" Width="800">
-    <Grid>
+        xmlns:properties="clr-namespace:MS2_Launcher.Properties"
+        Title="SettingsWindow" Height="500" Width="650"
+        WindowStyle="None"
+        AllowsTransparency="True"
+        ResizeMode="NoResize"
+        Background="Transparent"
+        FontSize="16"
+        FontFamily="Resources/#Armata"
+        Foreground="Black"
+        WindowStartupLocation="CenterScreen">
+    <Window.Resources>
+        <Style TargetType="Button" x:Key="RoundButton">
+            <Style.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="5" />
+                </Style>
+            </Style.Resources>
+        </Style>
+        <Style TargetType="Button" x:Key="RoundButtonFrame">
+            <Style.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="0,5,0,0" />
+                </Style>
+            </Style.Resources>
+        </Style>
+        <Style TargetType="TextBox">
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="Margin" Value="0,5,0,5" />
+            <Setter Property="Background">
+                <Setter.Value>
+                    <SolidColorBrush Color="White" Opacity="0.6"/>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="BorderBrush" Value="Black"/>
+        </Style>
+        <Style TargetType="TextBlock">
+            <Setter Property="VerticalAlignment" Value="Center" />
+        </Style>
+        <Style TargetType="Grid" x:Key="Size">
+            <Setter Property="VerticalAlignment" Value="Center" />
+        </Style>
+        <Style TargetType="DatePicker">
+            <Setter Property="VerticalAlignment" Value="Center" />
+        </Style>
+    </Window.Resources>
+
+    <!--Border-->
+    <Grid ShowGridLines="False">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.0289*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.9*"/>
+            <ColumnDefinition Width="0.1*"/>
+        </Grid.ColumnDefinitions>
+        <Grid Grid.Column="1" Grid.ColumnSpan="2" Panel.ZIndex="1" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Button Grid.Column="2" x:Name="CloseButton" Click="CloseButton_Click" BorderThickness="0" Style="{DynamicResource RoundButtonFrame}" >
+                <Button.Background>
+                    <ImageBrush ImageSource="Resources/windowButtons.png" Stretch="Fill"/>
+                </Button.Background>
+                <TextBlock Text="&#xE106;" FontFamily="Segoe MDL2 Assets" FontSize="10" >
+                </TextBlock>
+            </Button>
+            <Button BorderThickness="0" Grid.Column="0" x:Name="MinimizeButton"  HorizontalAlignment="Stretch" Click="MinimizeButton_Click"  >
+                <Button.Background>
+                    <ImageBrush ImageSource="Resources/windowButtons.png" Stretch="Fill"/>
+                </Button.Background>
+                <TextBlock Text="&#xE949;" FontFamily="Segoe MDL2 Assets" FontSize="10" FontWeight="Bold" />
+            </Button>
+            <Button BorderThickness="0" Grid.Column="1" x:Name="MaxmizeButton" HorizontalAlignment="Stretch" Click="MaxmizeButton_Click" >
+                <Button.Background>
+                    <ImageBrush ImageSource="Resources/windowButtons.png" Stretch="Fill"/>
+                </Button.Background>
+                <TextBlock Text="&#xE739;" FontFamily="Segoe MDL2 Assets" FontSize="10"  />
+            </Button>
+        </Grid>
+
+
+        <Border Grid.Row="0" Grid.RowSpan="2" Grid.Column="0" Grid.ColumnSpan="2" BorderThickness="20" CornerRadius="5">
+            <Border.Background>
+                <ImageBrush ImageSource="Resources/settings-background.jpg"  Stretch="UniformToFill" />
+            </Border.Background>
+                <Border.BorderBrush>
+                <ImageBrush ImageSource="Resources/windowFrame.png" Stretch="Fill"/>
+            </Border.BorderBrush>
+            <Grid ShowGridLines="False" MaxWidth="500" Margin="30">
+                <Grid.Background>
+                    <SolidColorBrush Color="#FFE0D0D0" Opacity="0.75"/>
+                </Grid.Background>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*"/>
+
+                </Grid.ColumnDefinitions>
+                <!--Select Server Banner-->
+                <!--<Border Grid.Row="0" Grid.Column="0" Margin="215,7,215,7" CornerRadius="5" Grid.ColumnSpan="2" Grid.RowSpan="1">
+                    <Border.Background>
+                        <ImageBrush ImageSource="Resources/windowFrame.png" Stretch="Fill"/>
+                    </Border.Background>
+
+                    --><!--<StackPanel Orientation="Horizontal" Margin="0,0,0,0" >
+
+                        <Image Source="Resources\banner.png" VerticalAlignment="Center" Margin="10,5"/>
+                        <TextBlock Margin="0" Text="Select your Server" FontSize="38" FontWeight="Bold" HorizontalAlignment="Stretch" VerticalAlignment="Center" />
+
+                    </StackPanel>--><!--
+                </Border>-->
+
+
+                <Label Grid.ColumnSpan="4" HorizontalAlignment="Center" Content="_Client Location" FontSize="22"/>
+                <ScrollViewer Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="1" VerticalScrollBarVisibility="Disabled" HorizontalScrollBarVisibility="Auto" >
+                    <TextBlock TextWrapping="Wrap" x:Name="ClientLocation" FontSize="12" Text="{Binding  Source={x:Static properties:Settings.Default}, Path=ClientLocation}"/>
+                </ScrollViewer>
+
+                <Button VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="0,0,5,5" Grid.Row="1" Grid.Column="3"  Style="{DynamicResource RoundButton}" BorderThickness="0" MaxWidth="20" MaxHeight="20" Click="ChangeClientLocation_Click">
+                    <Button.Background>
+                        <ImageBrush ImageSource="Resources/windowFrame.png" Stretch="Fill"/>
+                    </Button.Background>
+                    <Button.Content>
+                        <Image Source="Resources/pencil.png" Stretch="Uniform" />
+                    </Button.Content>
+                </Button>
+
+                <Label Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="2" HorizontalAlignment="Center"  Content="_Online Server" FontSize="22"/>
+                <StackPanel Grid.Column="1" Grid.Row="3">
+                    <TextBlock FontSize="20" Text="Ip"/>
+                    <TextBlock Text="{Binding  Source={x:Static properties:Settings.Default}, Path=OnlineIp}"/>
+                </StackPanel>
+                <StackPanel Grid.Column="2" Grid.Row="3">
+                    <TextBlock FontSize="20" Text="Port"/>
+                    <TextBlock Text="{Binding  Source={x:Static properties:Settings.Default}, Path=OnlinePort}"/>
+                </StackPanel>
+                <TextBox x:Name="OnlineServerIp" Grid.Column="1" Grid.Row="4"/>
+                <TextBox x:Name="OnlineServerPort" Grid.Column="2" Grid.Row="4"/>
+                <Button VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="0,0,5,5" Grid.Row="4" Grid.Column="3"  Style="{DynamicResource RoundButton}" BorderThickness="0" MaxWidth="20" MaxHeight="20" Click="SaveOnlineServerData_Click">
+                    <Button.Background>
+                        <ImageBrush ImageSource="Resources/windowFrame.png" Stretch="Fill"/>
+                    </Button.Background>
+                    <Button.Content>
+                        <Image Source="Resources/save.png" Stretch="Uniform" />
+                    </Button.Content>
+                </Button>
+
+                <Label Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="5" HorizontalAlignment="Center" Content="_Local Server" FontSize="22"/>
         
+                
+               
+                <StackPanel Grid.Column="1" Grid.Row="6">
+                    <TextBlock FontSize="20" Text="Ip"/>
+                    <TextBlock Text="{Binding  Source={x:Static properties:Settings.Default}, Path=LocalIp}"/>
+                </StackPanel>
+                <StackPanel Grid.Column="2" Grid.Row="6">
+                    <TextBlock FontSize="20" Text="Port"/>
+                    <TextBlock Text="{Binding  Source={x:Static properties:Settings.Default}, Path=LocalPort}"/>
+                </StackPanel>
+
+               
+                <TextBox x:Name="LocalServerIp" Grid.Column="1" Grid.Row="7"/>
+                <TextBox x:Name="LocalServerPort" Grid.Column="2" Grid.Row="7"/>
+                <Button HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="0,0,5,5" Grid.Row="7" Grid.Column="3"  Style="{DynamicResource RoundButton}" BorderThickness="0" MaxWidth="20" MaxHeight="20" Click="SaveLocalServerData_Click">
+                    <Button.Background>
+                        <ImageBrush ImageSource="Resources/windowFrame.png" Stretch="Fill"/>
+                    </Button.Background>
+                    <Button.Content>
+                        <Image Source="Resources/save.png" Stretch="Uniform" />
+                    </Button.Content>
+                </Button>
+
+                <!--Done Button-->
+                <Button Grid.Row="8" Grid.Column="2" Margin="3" MinHeight="20" MaxHeight="20" FontSize="18" Content="Done" Style="{DynamicResource RoundButton}" BorderThickness="0"  Click="CloseButton_Click">
+                    <Button.Background>
+                        <ImageBrush ImageSource="Resources/windowFrame.png" Stretch="Fill"/>
+                    </Button.Background>
+                </Button>
+
+            </Grid>
+        </Border>
     </Grid>
 </Window>

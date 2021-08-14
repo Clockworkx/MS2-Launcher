@@ -6,18 +6,21 @@
       <Value Profile="(Default)">185.163.119.206</Value>
     </Setting>
     <Setting Name="OnlinePort" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">21001</Value>
+      <Value Profile="(Default)">20001</Value>
     </Setting>
     <Setting Name="LocalIp" Type="System.String" Scope="User">
       <Value Profile="(Default)">127.0.0.1</Value>
     </Setting>
     <Setting Name="LocalPort" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">21001</Value>
+      <Value Profile="(Default)">20001</Value>
     </Setting>
-    <Setting Name="GridsplitterPosition" Type="System.String" Scope="User">
+    <Setting Name="GridsplitterPosition" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">0</Value>
     </Setting>
     <Setting Name="SelectedServer" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="ClientLocation" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
   </Settings>
