@@ -18,9 +18,12 @@
     <None Remove="Resources\background.jpg" />
     <None Remove="Resources\banner.png" />
     <None Remove="Resources\edit.png" />
+    <None Remove="Resources\Fonts\NotoSans-Bold.ttf" />
+    <None Remove="Resources\Fonts\NotoSans-BoldItalic.ttf" />
+    <None Remove="Resources\Fonts\NotoSans-Italic.ttf" />
+    <None Remove="Resources\Fonts\NotoSans-Regular.ttf" />
     <None Remove="Resources\icon.ico" />
     <None Remove="Resources\local.jpg" />
-    <None Remove="Resources\logo2.png" />
     <None Remove="Resources\online.jpg" />
     <None Remove="Resources\pencil.png" />
     <None Remove="Resources\save.png" />
@@ -40,10 +43,14 @@
 
   <ItemGroup>
     <Resource Include="Resources\altFrame" />
-    <Resource Include="Resources\Armata-Regular.ttf" />
+    <Resource Include="Resources\Fonts\Armata-Regular.ttf" />
     <Resource Include="Resources\background.jpg" />
     <Resource Include="Resources\banner.png" />
     <Resource Include="Resources\edit.png" />
+    <Resource Include="Resources\Fonts\NotoSans-Bold.ttf" />
+    <Resource Include="Resources\Fonts\NotoSans-BoldItalic.ttf" />
+    <Resource Include="Resources\Fonts\NotoSans-Italic.ttf" />
+    <Resource Include="Resources\Fonts\NotoSans-Regular.ttf" />
     <Resource Include="Resources\icon.ico" />
     <Resource Include="Resources\local.jpg" />
     <Resource Include="Resources\logo2.png" />

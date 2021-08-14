@@ -13,8 +13,8 @@
         ResizeMode="CanResizeWithGrip"
         Background="Transparent"
         Title="MS2 Launcher" Height="720" Width="1280"
-        FontSize="30"
-        FontFamily="French Script MT"
+        FontSize="20"
+        FontFamily="Resources\Fonts\#Noto Sans"
         Foreground="Black"
         WindowStartupLocation="CenterScreen"
         >
@@ -111,8 +111,6 @@
                 <!--Webview-->
                 <Wpf:WebView2 Grid.Row="1" Grid.Column="0" Margin="55" Source="https://github.com/AlanMorel/MapleServer2/commits/master" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
 
-
-
                 <Grid Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="3" Margin="10,0,0,0">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="301*"/>
@@ -156,7 +154,16 @@
                                 </Button.Background>
                             </Button>
                         </Border>
-                        <TextBlock Grid.RowSpan="2" Grid.ColumnSpan="2" Text="Online" Margin="0,0,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="85" IsHitTestVisible="False"/>
+                        <TextBlock Grid.RowSpan="2" Grid.ColumnSpan="2" Text="Online" Margin="0,0,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="68" IsHitTestVisible="False" Foreground="White">
+                            <TextBlock.Effect>
+                                <DropShadowEffect
+                                    ShadowDepth="5"
+                                    Direction="225"
+                                    Color="Black"
+                                    Opacity="0.75"
+                                    BlurRadius="2"/>
+                            </TextBlock.Effect>
+                        </TextBlock>
                         <Ellipse x:Name="OnlineStatus" Grid.Row="0" Grid.Column="1" Margin="0"  HorizontalAlignment="Right" Fill="Red" Height="20" Width="20" />
                     </Grid>
 
@@ -185,7 +192,16 @@
                             </Button>
                         </Border>
 
-                        <TextBlock Grid.RowSpan="2" Grid.ColumnSpan="2" Text="Local" Margin="0,0,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="85" IsHitTestVisible="False" />
+                        <TextBlock Grid.RowSpan="2" Grid.ColumnSpan="2" Text="Local" Margin="0,0,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="75" IsHitTestVisible="False" Foreground="White" >
+                            <TextBlock.Effect>
+                                <DropShadowEffect
+                                    ShadowDepth="5"
+                                    Direction="225"
+                                    Color="Black"
+                                    Opacity="0.75"
+                                    BlurRadius="2"/>
+                            </TextBlock.Effect>
+                        </TextBlock>
 
                         <Ellipse x:Name="LocalStatus" Grid.Row="0" Grid.Column="1" Margin="0"  HorizontalAlignment="Right" Fill="Red" Height="20" Width="20" />
                     </Grid>
@@ -208,12 +224,12 @@
                         </Border.Background>
                         <StackPanel Orientation="Horizontal" Margin="0,0,0,0" >
                             <Image Source="Resources\banner.png" VerticalAlignment="Center" Margin="10,5"/>
-                            <TextBlock Margin="0" Text="Select your Server" FontSize="38" FontWeight="Bold" HorizontalAlignment="Stretch" VerticalAlignment="Center" />
+                            <TextBlock Margin="0" Text="Select your Server" FontSize="26" HorizontalAlignment="Stretch" VerticalAlignment="Center" />
                         </StackPanel>
                     </Border>
                     
                     <!--Edit Button-->
-                    <Button HorizontalAlignment="Right" MinWidth="35" Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2" Margin="0,25,0,0" Style="{DynamicResource RoundButton}" BorderThickness="0"  Click="EditButton_Click">
+                    <Button HorizontalAlignment="Right" MinWidth="35" Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2" Margin="0,25,0,0" Style="{DynamicResource RoundButton}" BorderThickness="0"  Click="EditButton_Click" BorderBrush="Black" >
                         <Button.Background>
                             <ImageBrush ImageSource="Resources/windowFrame.png" Stretch="Fill"/>
                         </Button.Background>

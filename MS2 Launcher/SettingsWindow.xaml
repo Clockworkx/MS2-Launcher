@@ -12,7 +12,7 @@
         ResizeMode="NoResize"
         Background="Transparent"
         FontSize="16"
-        FontFamily="Resources/#Armata"
+        FontFamily="Resources\Fonts\#Noto Sans"
         Foreground="Black"
         WindowStartupLocation="CenterScreen">
     <Window.Resources>
@@ -150,7 +150,7 @@
 
                 <Label Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="2" HorizontalAlignment="Center"  Content="_Online Server" FontSize="22"/>
                 <StackPanel Grid.Column="1" Grid.Row="3">
-                    <TextBlock FontSize="20" Text="Ip"/>
+                    <TextBlock FontSize="20" Text="IP"/>
                     <TextBlock Text="{Binding  Source={x:Static properties:Settings.Default}, Path=OnlineIp}"/>
                 </StackPanel>
                 <StackPanel Grid.Column="2" Grid.Row="3">
@@ -173,7 +173,7 @@
                 
                
                 <StackPanel Grid.Column="1" Grid.Row="6">
-                    <TextBlock FontSize="20" Text="Ip"/>
+                    <TextBlock FontSize="20" Text="IP"/>
                     <TextBlock Text="{Binding  Source={x:Static properties:Settings.Default}, Path=LocalIp}"/>
                 </StackPanel>
                 <StackPanel Grid.Column="2" Grid.Row="6">
@@ -194,7 +194,7 @@
                 </Button>
 
                 <!--Done Button-->
-                <Button Grid.Row="8" Grid.Column="2" Margin="3" MinHeight="20" MaxHeight="20" FontSize="18" Content="Done" Style="{DynamicResource RoundButton}" BorderThickness="0"  Click="CloseButton_Click">
+                <Button VerticalAlignment="Center" Grid.Row="8" Grid.Column="2" Margin="3" MinHeight="20" MaxHeight="25" FontSize="16" Content="Done" Style="{DynamicResource RoundButton}" BorderThickness="0"  Click="CloseButton_Click">
                     <Button.Background>
                         <ImageBrush ImageSource="Resources/windowFrame.png" Stretch="Fill"/>
                     </Button.Background>
