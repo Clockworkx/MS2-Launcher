@@ -52,12 +52,15 @@ namespace MS2_Launcher
         {
             var isOnlinePortOpen = await IsPortOpen(Properties.Settings.Default.OnlineIp, Properties.Settings.Default.OnlinePort);
             var isLocalPortOpen = await IsPortOpen(Properties.Settings.Default.LocalIp, Properties.Settings.Default.LocalPort);
-            if (isOnlinePortOpen) OnlineStatus.Fill = Brushes.Green;
+
+            if (isOnlinePortOpen)
+                OnlineStatus.Fill = Brushes.Green;
             else
-            OnlineStatus.Fill = Brushes.Red;
-            if (isLocalPortOpen) LocalStatus.Fill = Brushes.Green;
+                OnlineStatus.Fill = Brushes.Red;
+            if (isLocalPortOpen)
+                LocalStatus.Fill = Brushes.Green;
             else
-            LocalStatus.Fill = Brushes.Red;
+                LocalStatus.Fill = Brushes.Red;
         }
 
         private void CloseButton_Click(object sender, RoutedEventArgs e)
@@ -96,7 +99,7 @@ namespace MS2_Launcher
             {
                 return false;
             }
-            
+
         }
 
         private void Grid_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
@@ -106,13 +109,13 @@ namespace MS2_Launcher
 
         private async void StartButton_Click(object sender, RoutedEventArgs e)
         {
-            
-           if (settings.SelectedServer.Length == 0)
+
+            if (settings.SelectedServer.Length == 0)
             {
                 MessageBox.Show("Select a server to start");
                 return;
             }
-           if (settings.ClientLocation.Length == 0)
+            if (settings.ClientLocation.Length == 0)
             {
                 string messageBoxText = "Client location not set.\nDo you want to set it now?";
                 if (MessageBox.Show(messageBoxText, "Starting Error", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
@@ -125,8 +128,8 @@ namespace MS2_Launcher
             //string serverIp;
             int serverPort;
             string commonParams = "-ip -port --nxapp=nxl --lc=EN";
-            List<string> orionConfigurationContent = new List<string> { "[Settings]"};
-            
+            List<string> orionConfigurationContent = new List<string> { "[Settings]" };
+
             if (settings.SelectedServer == "Online")
             {
                 //serverIp = settings.OnlineIp;
